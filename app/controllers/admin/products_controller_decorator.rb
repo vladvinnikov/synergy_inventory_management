@@ -14,7 +14,7 @@ Admin::ProductsController.class_eval do
 
     @search = Product.where(:id => product_ids).metasearch(params[:search])
     pagination_options = {:per_page => (session[:im_per_page] || 10), :page => params[:page]}
-    @collection = @search.relation.group_by_products_id.paginate(pagination_options)
+    @collection = @search.relation.paginate(pagination_options)
 
     respond_with(@collection) do |format|
       format.html
